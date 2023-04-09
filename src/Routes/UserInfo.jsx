@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Tabs from "../components/Tabs";
+import Repo from "../components/Repo";
+import Events from "../components/Events";
+import UsersContainer from "../components/UsersContainer";
 
 const UserInfo = ({}) => {
   const [user, setUser] = useState([]);
+  const [info, setInfo] = useState([]);
   const [type, setType] = useState("repos");
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -10,13 +15,20 @@ const UserInfo = ({}) => {
   const BASE_URL = "https://api.github.com/users";
 
   async function getUserinfo() {
-    const res = await fetch(BASE_URL + pathname);
+    const res = await fetch(`${BASE_URL}${pathname}`);
     const data = await res.json();
     setUser(() => [data]);
   }
 
+  async function getUrls() {
+    const res = await fetch(`${BASE_URL}${pathname}/${type}`);
+    const data = await res.json();
+    setInfo(data);
+  }
+
   useEffect(() => {
     getUserinfo();
+    getUrls();
   }, [pathname, type]);
 
   return (
@@ -71,25 +83,11 @@ const UserInfo = ({}) => {
           </div>
         ))}
       <div className="flex border-b pb-4 mt-[10%] mb-6 justify-center gap-6 md:text-xl">
-        <button
-          className={`${type === "repos" && "text-teal-400"}`}
-          onClick={() => setType("repos")}
-        >
-          Repositories
-        </button>
-        <button
-          className={`${type === "received_events" && "text-teal-400"}`}
-          onClick={() => setType("received_events")}
-        >
-          Activity
-        </button>
-        <button
-          className={`${type === "followers" && "text-teal-400"}`}
-          onClick={() => setType("followers")}
-        >
-          Followers
-        </button>
+        <Tabs type={type} setType={setType} />
       </div>
+      {type === "repos" && <Repo info={info} />}
+      {type === "received_events" && <Events info={info} />}
+      {type === "followers" && <UsersContainer users={info} />}
     </div>
   );
 };
