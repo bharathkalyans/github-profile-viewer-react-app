@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Logo from "./components/Logo";
 import Users from "./Routes/Users";
+import UserInfo from "./Routes/UserInfo";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Logo />
         <Routes>
           <Route path="/" element={<Users />}></Route>
+          <Route path="/:name" element={<UserInfo />}></Route>
         </Routes>
       </div>
     </div>
