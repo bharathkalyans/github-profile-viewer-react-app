@@ -20,7 +20,7 @@ const UsersContainer = ({ users }) => {
                   alt={value?.avatar_url}
                 />
                 <h1 className="text-xs">{value?.login}</h1>
-                <h1 className="text-xs text-teal-600">{value?.name}</h1>
+                <h1 className="text-xs text-purple-800">{value?.name}</h1>
                 <Link to={`/${value?.login}`}>
                   <span className="text-gray-600 bg-white my-3 font-semibold py-1 px-2 block tracking-wide rounded">
                     View
