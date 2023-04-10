@@ -3,7 +3,6 @@ import React from "react";
 const Repo = ({ info }) => {
   return (
     <>
-      {console.log(info)}
       {info.map((value, idx) => (
         <div key={idx} className="bg-gray-400  p-3 leading-7">
           <a

@@ -4,10 +4,12 @@ import Tabs from "../components/Tabs";
 import Repo from "../components/Repo";
 import Events from "../components/Events";
 import UsersContainer from "../components/UsersContainer";
+import Loading from "../components/Loading";
 
 const UserInfo = ({}) => {
   const [user, setUser] = useState([]);
   const [info, setInfo] = useState([]);
+  const [loading, setLoading] = useState(null);
   const [type, setType] = useState("repos");
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -15,15 +17,20 @@ const UserInfo = ({}) => {
   const BASE_URL = "https://api.github.com/users";
 
   async function getUserinfo() {
+    setLoading(true);
     const res = await fetch(`${BASE_URL}${pathname}`);
     const data = await res.json();
     setUser(() => [data]);
+    setLoading(null);
   }
 
   async function getUrls() {
+    setUser([]);
+    setLoading(true);
     const res = await fetch(`${BASE_URL}${pathname}/${type}`);
     const data = await res.json();
     setInfo(data);
+    setLoading(null);
   }
 
   useEffect(() => {
@@ -85,8 +92,17 @@ const UserInfo = ({}) => {
       <div className="flex border-b pb-4 mt-[10%] mb-6 justify-center gap-6 md:text-xl">
         <Tabs type={type} setType={setType} />
       </div>
-      {type === "repos" && <div>{info && <Repo info={info} />}</div>}
-      {type === "received_events" && <Events info={info} />}
+      {loading && <Loading />}
+      {type === "repos" && (
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-7 w-10/12 mx-auto">
+          {info && <Repo info={info} />}
+        </div>
+      )}
+      {type === "received_events" && (
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-7 w-10/12 mx-auto">
+          {info && <Events info={info} />}
+        </div>
+      )}
       {type === "followers" && <UsersContainer users={info} />}
     </div>
   );
