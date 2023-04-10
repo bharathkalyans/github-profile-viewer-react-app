@@ -85,7 +85,7 @@ const UserInfo = ({}) => {
       <div className="flex border-b pb-4 mt-[10%] mb-6 justify-center gap-6 md:text-xl">
         <Tabs type={type} setType={setType} />
       </div>
-      {type === "repos" && <Repo info={info} />}
+      {type === "repos" && <div>{info && <Repo info={info} />}</div>}
       {type === "received_events" && <Events info={info} />}
       {type === "followers" && <UsersContainer users={info} />}
     </div>
