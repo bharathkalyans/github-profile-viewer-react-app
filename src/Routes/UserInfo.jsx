@@ -25,7 +25,7 @@ const UserInfo = ({}) => {
   }
 
   async function getUrls() {
-    setUser([]);
+    setInfo([]);
     setLoading(true);
     const res = await fetch(`${BASE_URL}${pathname}/${type}`);
     const data = await res.json();
@@ -56,7 +56,7 @@ const UserInfo = ({}) => {
               src={uinfo.avatar_url}
               className="w-[350px] border-4 border-white md:mx-0 mx-auto"
             />
-            <div className="text-sm px-3 ">
+            <div className="text-sm px-3">
               <h1 className="text-3xl pb-4">{uinfo?.name}</h1>
               <h1>
                 <span className="text-teal-500">User Name : </span>
@@ -84,7 +84,7 @@ const UserInfo = ({}) => {
                 className="bg-teal-600 py-2 px-4 my-3"
                 href={uinfo?.html_url}
               >
-                <span className="medium">Visit Profile Page</span>
+                <span className="medium"> Profile </span>
               </a>
             </div>
           </div>

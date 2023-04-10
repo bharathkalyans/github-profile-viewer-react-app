@@ -3,9 +3,7 @@ export default {
   mode: "jit",
   content: ["./index.html", "./src/**/*.{js,jsx,ys,tsx}"],
   theme: {
-    fontSize: {
-      xl: "2rem",
-    },
+    fontSize: {},
     extend: {
       container: {
         center: true,

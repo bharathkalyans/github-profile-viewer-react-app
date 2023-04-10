@@ -21,7 +21,7 @@ const UsersContainer = ({ users }) => {
                 />
                 <h1 className="text-xs">{value?.login}</h1>
                 <h1 className="text-xs text-teal-600">{value?.name}</h1>
-                <Link to={value?.login}>
+                <Link to={`/${value?.login}`}>
                   <span className="text-gray-600 bg-white my-3 font-semibold py-1 px-2 block tracking-wide rounded">
                     View
                   </span>

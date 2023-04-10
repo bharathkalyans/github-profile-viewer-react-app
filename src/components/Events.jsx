@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "timeago.js";
 
 const Events = ({ info }) => {
   return (
@@ -17,9 +18,7 @@ const Events = ({ info }) => {
             {value?.repo?.name}
           </h1>
           <br />
-          <span style={{ fontSize: 20 }}>
-            {new Date(value?.created_at).toLocaleDateString()}
-          </span>
+          <span>{format(value?.created_at)}</span>
         </div>
       ))}
     </>
