@@ -42,7 +42,7 @@ const UserInfo = ({}) => {
     <div className="py-5">
       <button
         onClick={() => navigate("/")}
-        className="px-5 py-1 mx-1 my-4 bg-teal-700 rounded"
+        className="px-5 py-1 mx-1 my-4 bg-white text-black rounded"
       >
         BACK
       </button>
@@ -54,34 +54,37 @@ const UserInfo = ({}) => {
           >
             <img
               src={uinfo.avatar_url}
-              className="w-[350px] border-4 border-white md:mx-0 mx-auto"
+              className="w-[350px] border-4 border-white md:mx-0 mx-auto rounded-lg"
             />
-            <div className="text-sm px-3">
-              <h1 className="text-3xl pb-4">{uinfo?.name}</h1>
+            <div className="text-lg px-3">
+              <div className="text-3xl pb-4">
+                <span>{uinfo?.name}</span>
+              </div>
               <h1>
-                <span className="text-teal-500">User Name : </span>
+                <span className="text-purple-800">User Name : </span>
                 {uinfo?.login}
               </h1>
 
               <h1>
-                <span className="text-teal-500">Followers : </span>
+                <span className="text-purple-800">Followers : </span>
                 {uinfo?.followers}
               </h1>
               <h1>
-                <span className="text-teal-500">Following : </span>
+                <span className="text-purple-800">Following : </span>
                 {uinfo?.following}
               </h1>
               <h1>
-                <span className="text-teal-500">Public Repositories : </span>
+                <span className="text-purple-800">Public Repositories : </span>
                 {uinfo?.public_repos}
               </h1>
               <h1>
-                <span className="text-teal-500">Joined on : </span>
+                <span className="text-purple-800">Joined on : </span>
                 {new Date(uinfo?.created_at).toLocaleDateString()}
               </h1>
+              <br />
               <a
                 target="_blank "
-                className="bg-teal-600 py-2 px-4 my-3"
+                className="bg-white text-black rounded-lg py-2 px-4 my-3"
                 href={uinfo?.html_url}
               >
                 <span className="medium"> Profile </span>
