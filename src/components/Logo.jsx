@@ -12,7 +12,7 @@ const Logo = () => {
     "
     >
       <img
-        src="/src/assets/github-mark.png"
+        src="/public/github-mark.png"
         alt="github-logo"
         className="w-28 rounded-full bg-gray-50"
       />
