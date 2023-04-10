@@ -12,9 +12,9 @@ const Logo = () => {
     "
     >
       <img
-        src={"./public/github-main.jpg"}
+        src="https://github.com/bharathkalyans/github-profile-viewer-react-app/blob/master/public/github-main.jpg"
         alt="github-logo"
-        className="w-28 rounded-full bg-gray-50"
+        className="w-2l8 rounded-full bg-gray-50"
       />
       <h1 className="text-xl px-10">Github Profile Viewer</h1>
     </div>
