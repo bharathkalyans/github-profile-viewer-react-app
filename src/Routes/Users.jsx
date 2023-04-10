@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import UsersContainer from "../components/UsersContainer";
 import Loading from "../components/Loading";
+import { AwesomeButton } from "react-awesome-button";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -36,17 +37,31 @@ const Users = () => {
     allUsers();
   }, [setUsers]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+        findUser();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <div>
       <div className="flex justify-center items-center h-11 my-5">
         <input
           type="text"
-          placeholder="Search Github Username..."
-          className="h-full lg:w-3/4 md:w-2/3 sm:w-1/3 text-gray-500 px-2 outline-none"
+          placeholder="Search Github User by username"
+          className="h-full lg:w-2/4 md:w-2/3 sm:w-1/3 text-gray-500 px-2 mx-5 rounded-lg outline-none "
           ref={user}
         />
         <button
-          className="px-3 h-full bg-gray-700 text-black"
+          className="px-3 h-full bg-white text-black rounded-lg hover:bg-gray-300"
           onClick={findUser}
         >
           Search
